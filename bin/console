@@ -9,7 +9,14 @@ require "what_a_world"
 # (If you use this, don't forget to add pry to your Gemfile!)
 # require "pry"
 # Pry.start
+def reload!
+    load_all './lib/what_a_world'
+end
+
 
 require "irb"
 IRB.start(__FILE__)
+
+
+
 
