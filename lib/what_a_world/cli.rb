@@ -1,9 +1,11 @@
 class WhatAWorld::CLI
     def call
+        countries_by_letter = []
         letter = welcome
         scraper = WhatAWorld::Scraper::ScraperCli.new(letter)
-        #scraper.all => returns array of letter of country
-    end
+        countries_by_letter = scraper.all #=> returns array of letter of country
+puts countries_by_letter
+     end
 
     def welcome
         puts "Welcome!"
