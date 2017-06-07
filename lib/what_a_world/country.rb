@@ -1,11 +1,11 @@
 class WhatAWorld::Country
-    attr_accessor :name :last_updated, :region
+    attr_accessor :name, :last_updated, :region
     def initialize(name)
         @name = name
-        scrape
     end
 
     def scrape
-        
+        self.last_updated = "Aug 13, 2013"
+        self.region = "Middle East"
     end
 end

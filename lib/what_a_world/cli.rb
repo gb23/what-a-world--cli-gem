@@ -7,6 +7,8 @@ class WhatAWorld::CLI
 
         country_name = get_country(countries)
         country = WhatAWorld::Country.new(country_name)
+        country.scrape  
+        #country obj now has name, lastupdated, region.
 
 
 
