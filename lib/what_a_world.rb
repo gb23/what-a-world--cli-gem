@@ -1,5 +1,5 @@
 #environment file
-puts "found what_a_world.rb"
+
 require 'nokogiri'
 require 'open-uri'
 require 'require_all'
