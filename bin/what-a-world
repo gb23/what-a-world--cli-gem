@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/what_a_world'
+
+WhatAWorld::CLI.new.call
+
+
