@@ -1,7 +1,12 @@
 class WhatAWorld::Issues
     attr_accessor :trafficking, :drugs, :refugees, :disputes
-    def initialize
-        
+    def scrape
+        scraper = WhatAWorld::Scraper::ScraperIssues.new
+        #...
+        self.trafficking = "multiple people"
+        self.drugs = "cocaine"
+        self.refugees = "tons, unfortunately"
+        self.disputes = "arguments with everyone"
     end
 end
 
