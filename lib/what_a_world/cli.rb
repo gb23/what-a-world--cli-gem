@@ -1,10 +1,16 @@
 class WhatAWorld::CLI
     def call
-        countries_by_letter = []
+        countries = []
         letter = welcome
         scraper = WhatAWorld::Scraper::ScraperCli.new(letter)
-        countries_by_letter = scraper.all #=> returns array of letter of country
-puts countries_by_letter
+        countries = scraper.all #=> returns array of letter of country
+
+        country_name = get_country(countries)
+        country = WhatAWorld::Country.new(country_name)
+
+
+
+
      end
 
     def welcome
@@ -16,6 +22,12 @@ puts countries_by_letter
             letter = gets.strip.upcase 
         end 
         letter
+    end
+
+    def get_country(countries)
+        #enumerate a list
+        #get country from number
+        #return country
     end
 
 end
