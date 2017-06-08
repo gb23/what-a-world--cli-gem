@@ -6,7 +6,7 @@ class WhatAWorld::CLI
             countries = []
             letter = select_letter
             scraper = WhatAWorld::Scraper::ScraperCli.new(letter)
-            countries = scraper.all #=> returns array of letter of country
+            countries = scraper.all
 
             country_name = get_country(countries)
 
@@ -17,6 +17,7 @@ class WhatAWorld::CLI
             print_results(country)
             again = again?
         end
+        puts "Goodbye!"
      end
 
     def select_letter
@@ -59,19 +60,23 @@ class WhatAWorld::CLI
          puts "updated: #{last_updated}"
          puts "----------------------------------"
          if !trafficking.nil?
-            puts "Trafficking:"
+            puts "Trafficking in persons::"
+            puts "----------------------------------"
             puts "#{trafficking}"
          end
          if !drugs.nil?
-            puts "Drugs:"
+            puts "Illicit drugs::"
+            puts "----------------------------------"
             puts "#{drugs}"
          end
          if !refugees.nil?
-            puts "Refugees:"
+            puts "Refugees and internally displaced persons::"
+            puts "----------------------------------"
             puts "#{refugees}"
          end
          if !disputes.nil?
-            puts "Disputes:"
+            puts "Disputes - international::"
+            puts "----------------------------------"
             puts "#{disputes}"
          end
     end
@@ -80,7 +85,7 @@ class WhatAWorld::CLI
         repeat = true
         while repeat
             puts "Would you like to look at more data?"
-            puts "type 'yes' or 'no'"
+            puts "Type 'yes' or 'no'"
             print ":"
             input = gets.strip.to_s.upcase #catch empty input
             if input != "YES" && input != "NO" && input != "Y" && input != "N"
