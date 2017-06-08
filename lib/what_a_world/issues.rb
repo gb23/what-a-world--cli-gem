@@ -6,11 +6,11 @@ class WhatAWorld::Issues
      
     def scrape
         scraper = WhatAWorld::Scraper::ScraperIssues.new(self.url_extension)
-    
-        self.trafficking = scraper.get_trafficking
-        self.drugs = scraper.get_drugs
-        self.refugees = scraper.get_refugees
-        self.disputes = scraper.get_disputes
+        scraper.scrape_issues
+        self.trafficking = scraper.trafficking
+        self.drugs = scraper.drugs
+        self.refugees = scraper.refugees
+        self.disputes = scraper.disputes
     end
 end
 

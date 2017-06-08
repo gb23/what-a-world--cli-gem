@@ -57,7 +57,7 @@ class WhatAWorld::Scraper
     end
 
     class ScraperIssues
-        attr_accessor :country_url, :html, :country_page
+        attr_accessor :country_url, :html, :country_page, :trafficking, :disputes, :drugs, :refugees
         def initialize(url_extension)
             mod_extension = url_extension.split("/")
             mod_extension = mod_extension.insert(1, "/")
@@ -72,31 +72,45 @@ class WhatAWorld::Scraper
             @country_page = Nokogiri::HTML(html)
         end
 
-        def get_trafficking
-            #all text: @country_page.xpath('//ul[last()]/li[last()]').text
-            #issue titles    @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a').text
-            # => "Disputes - international:Refugees and internally displaced persons:Trafficking in persons:Illicit drugs:"
-binding.pry
+        def scrape_issues
+            iterator = 1
+            while @country_page.xpath('//ul[last()]/li[last()]/div[iterator]').text != ""
+                case @country_page.xpath('//ul[last()]/li[last()]/div[iterator]').text
+                when "Disputes -- international:"
+                
+                when "Refugees and internally displaced persons:"
+                when "Trafficking in persons:"
+                when "Illicit drugs:"
+                #else
+                end 
+            end
         end
 
-        #############################
-        [
-        @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[0].text #while this is not equal to nil.
-        => "Disputes -- international:"
+#         #############################
+#         [
+#         n=0 #needs to start at 0
+#         @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[n].text #while this is not equal to nil.
+#         => "Disputes -- international:" 
+        
 
 
 
-        ]
-    
+#         n++
+#         ]
+#         ####this array only gets main text from disputes and drugs...
+#         @country_page.xpath('//ul[last()]/li[last()]/div[@class="category_data"]')[0].text
+# => "Namibia has supported, and in 2004 Zimbabwe dropped objections to, plans between Botswana and Zambia to build a bridge over the Zambezi River, thereby
+# de facto recognizing a short, but not clearly delimited, Botswana-Zambia boundary in the river; South Africa has placed military units to assist police ope
+# rations along the border of Lesotho, Zimbabwe, and Mozambique to control smuggling, poaching, and illegal migration"
 
+#         @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[1].text 
+#         => "Refugees and internally displaced persons:"
 
-        @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[1].text 
-        => "Refugees and internally displaced persons:"
+#         @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[2].text
+#         => "Trafficking in persons:"
 
-        @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[2].text
-        => "Trafficking in persons:"
+#         @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[3].text
+#         => "Illicit drugs:"
 
-        @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[3].text
-        => "Illicit drugs:"
+#         @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[4].text == nil
 
-        @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[4].text == nil
