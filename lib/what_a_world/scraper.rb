@@ -57,8 +57,12 @@ class WhatAWorld::Scraper
     end
 
     class ScraperIssues
-        attr_accessor :country_url, :html, :country_page, :trafficking, :disputes, :drugs, :refugees
+        attr_accessor :country_url, :html, :country_page, :trafficking_hash, :disputes_hash, :drugs_hash, :refugees_hash
         def initialize(url_extension)
+            trafficking_hash = {}
+            disputes_hash = {}
+            drugs_hash = {}
+            refugees_hash = {}
             mod_extension = url_extension.split("/")
             mod_extension = mod_extension.insert(1, "/")
             mod_extension = mod_extension.insert(2, "print_")
@@ -73,14 +77,20 @@ class WhatAWorld::Scraper
         end
 
         def scrape_issues
+            disputes = "Disputes -- international:"
+            refugees = "Refugees and internally displaced persons:"
+            trafficking = "Trafficking in persons:"
+            drugs = "Illicit drugs:"
+
             iterator = 1
             while @country_page.xpath('//ul[last()]/li[last()]/div[iterator]').text != ""
                 case @country_page.xpath('//ul[last()]/li[last()]/div[iterator]').text
-                when "Disputes -- international:"
-                
-                when "Refugees and internally displaced persons:"
-                when "Trafficking in persons:"
-                when "Illicit drugs:"
+                when disputes
+                    
+                    
+                when refugees
+                when trafficking
+                when drugs
                 #else
                 end 
             end
