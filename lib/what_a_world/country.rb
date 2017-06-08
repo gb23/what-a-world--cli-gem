@@ -20,8 +20,3 @@ class WhatAWorld::Country
         #tap 
     end
 end
-
-# Trafficking in persons:   @trafficking = country.issues.trafficking
-# Illicit drugs:
-# Refugees and internally displaced persons:
-# Disputes - international:

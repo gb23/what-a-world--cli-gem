@@ -57,5 +57,29 @@ class WhatAWorld::Scraper
     end
 
     class ScraperIssues
+        attr_accessor :country_url, :html, :country_page
+        def initialize(url_extension)
+            @country_url = URL + url_extension
+            @html = open(@country_url)
+            @country_page = Nokogiri::HTML(html)
+        end
+
+        def get_trafficking
+            
+        end
+
+        def get_drugs
+
+        end
+
+        def refugees
+
+        end
+
+        def disputes
+        
+        end
+
+
     end
 end

@@ -61,11 +61,12 @@ class WhatAWorld::CLI
          disputes = country.issues.disputes
 
          puts "##################################"
+         puts "``````````````````````````````````"
          puts "#{name}"
          puts "``````````````````````````````````"
          puts "Location: #{region}"
          puts "##################################"
-         puts "updated: #{last_updated}"
+         puts "n#{last_updated}"
          puts "----------------------------------"
          if !trafficking.nil?
             puts "Trafficking in persons::"

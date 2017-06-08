@@ -1,17 +1,17 @@
 class WhatAWorld::Issues
-    attr_accessor :trafficking, :drugs, :refugees, :disputes
+    attr_accessor :trafficking, :drugs, :refugees, :disputes, :url_extension
+    def initialize(url_extension)
+        @url_extension = url_extension
+    end
+     
     def scrape
-        scraper = WhatAWorld::Scraper::ScraperIssues.new
-        #...
-        self.trafficking = "multiple people"
-        self.drugs = "cocaine"
-        self.refugees = "tons, unfortunately"
-        self.disputes = "arguments with everyone"
+        scraper = WhatAWorld::Scraper::ScraperIssues.new(self.url_extension)
+    
+        self.trafficking = scraper.get_trafficking
+        self.drugs = scraper.get_drugs
+        self.refugees = scraper.get_refugees
+        self.disputes = scraper.get_disputes
     end
 end
 
 
-# Trafficking in persons:
-# Illicit drugs:
-# Refugees and internally displaced persons:
-# Disputes - international:
