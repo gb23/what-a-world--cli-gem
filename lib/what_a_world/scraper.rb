@@ -73,21 +73,30 @@ class WhatAWorld::Scraper
         end
 
         def get_trafficking
+            #all text: @country_page.xpath('//ul[last()]/li[last()]').text
+            #issue titles    @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a').text
+            # => "Disputes - international:Refugees and internally displaced persons:Trafficking in persons:Illicit drugs:"
 binding.pry
         end
 
-        def get_drugs
-binding.pry
-        end
-
-        def get_refugees
-binding.pry
-        end
-
-        def get_disputes
-binding.pry      
-        end
+        #############################
+        [
+        @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[0].text #while this is not equal to nil.
+        => "Disputes -- international:"
 
 
-    end
-end
+
+        ]
+    
+
+
+        @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[1].text 
+        => "Refugees and internally displaced persons:"
+
+        @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[2].text
+        => "Trafficking in persons:"
+
+        @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[3].text
+        => "Illicit drugs:"
+
+        @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[4].text == nil
