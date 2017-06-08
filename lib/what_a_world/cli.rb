@@ -14,16 +14,12 @@ class WhatAWorld::CLI
             country.scrape  
             country.get_issues
 
-            #print_results(country)
+            print_results(country)
             again = again?
-#binding.pry
         end
-
-
      end
 
     def select_letter
-        
         letter = nil
         while !(/\A[A-Z]\z/.match(letter))
             puts "Select A-Z"
@@ -48,7 +44,36 @@ class WhatAWorld::CLI
     end
 
     def print_results(country)
+         name = country.name
+         last_updated = country.last_updated
+         region = country.region 
+         trafficking = country.issues.trafficking
+         drugs = country.issues.drugs
+         refugees = country.issues.refugees
+         disputes = country.issues.disputes
 
+         puts "##################################"
+         puts "#{name}"
+         puts "#{region}"
+         puts "##################################"
+         puts "updated: #{last_updated}"
+         puts "----------------------------------"
+         if !trafficking.nil?
+            puts "Trafficking:"
+            puts "#{trafficking}"
+         end
+         if !drugs.nil?
+            puts "Drugs:"
+            puts "#{drugs}"
+         end
+         if !refugees.nil?
+            puts "Refugees:"
+            puts "#{refugees}"
+         end
+         if !disputes.nil?
+            puts "Disputes:"
+            puts "#{disputes}"
+         end
     end
 
     def again?
@@ -63,7 +88,6 @@ class WhatAWorld::CLI
             else
                 repeat = false
             end
-    #binding.pry
         end
         input == "YES" || input == "Y" ? true : false
     end
