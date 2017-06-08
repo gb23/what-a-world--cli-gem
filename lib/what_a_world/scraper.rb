@@ -57,12 +57,12 @@ class WhatAWorld::Scraper
     end
 
     class ScraperIssues
-        attr_accessor :country_url, :html, :country_page, :trafficking_hash, :disputes_hash, :drugs_hash, :refugees_hash
+        attr_accessor :country_url, :country_page, :trafficking_hash, :disputes_hash, :drugs_hash, :refugees_hash
         def initialize(url_extension)
-            trafficking_hash = {}
-            disputes_hash = {}
-            drugs_hash = {}
-            refugees_hash = {}
+            @trafficking_hash = {}
+            @disputes_hash = {}
+            @drugs_hash = {}
+            @refugees_hash = {}
             mod_extension = url_extension.split("/")
             mod_extension = mod_extension.insert(1, "/")
             mod_extension = mod_extension.insert(2, "print_")
@@ -74,6 +74,7 @@ class WhatAWorld::Scraper
             @country_url = URL + mod_extension
             html = open(@country_url)
             @country_page = Nokogiri::HTML(html)
+
         end
         def create_string(iterator)
             "//ul[last()]/li[last()]/div[" + iterator.to_s + "]"
@@ -129,7 +130,7 @@ class WhatAWorld::Scraper
                 elsif drugs == scraped_string(iterator)
                     iterator +=1
                     scraped = scraped_string(iterator)
-                    while (scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
+                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
                         drugs_content << scraped
                         iterator +=1
                         scraped = scraped_string(iterator)
@@ -137,41 +138,10 @@ class WhatAWorld::Scraper
                 #else
                 end 
             end
-
-            disputes_hash[disputes] = disputes_content
-            refugees_hash[refugees] = refugees_content
-            trafficking_hash[refugees] = trafficking_content
-            drugs_hash[drugs] = drugs_content
-binding.pry
+        disputes_hash[disputes] = disputes_content
+        refugees_hash[refugees] = refugees_content
+        trafficking_hash[trafficking] = trafficking_content
+        drugs_hash[drugs] = drugs_content
         end
     end    
 end    
-
-#         #############################
-#         [
-#         n=0 #needs to start at 0
-#         @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[n].text #while this is not equal to nil.
-#         => "Disputes -- international:" 
-        
-
-
-
-#         n++
-#         ]
-#         ####this array only gets main text from disputes and drugs...
-#         @country_page.xpath('//ul[last()]/li[last()]/div[@class="category_data"]')[0].text
-# => "Namibia has supported, and in 2004 Zimbabwe dropped objections to, plans between Botswana and Zambia to build a bridge over the Zambezi River, thereby
-# de facto recognizing a short, but not clearly delimited, Botswana-Zambia boundary in the river; South Africa has placed military units to assist police ope
-# rations along the border of Lesotho, Zimbabwe, and Mozambique to control smuggling, poaching, and illegal migration"
-
-#         @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[1].text 
-#         => "Refugees and internally displaced persons:"
-
-#         @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[2].text
-#         => "Trafficking in persons:"
-
-#         @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[3].text
-#         => "Illicit drugs:"
-
-#         @country_page.xpath('//ul[last()]/li[last()]/div[@id="field"]/a[1]')[4].text == nil
-

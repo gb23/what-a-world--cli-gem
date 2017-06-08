@@ -65,29 +65,33 @@ class WhatAWorld::CLI
          disputes = country.issues.disputes_hash.values.join
 
          puts "##################################"
-         puts "``````````````````````````````````"
-         puts "#{name}"
+         puts "__________________________________"
+         puts "#{name.upcase}"
          puts "``````````````````````````````````"
          puts "Location: #{region}"
          puts "##################################"
-         puts "n#{last_updated}"
+         puts "#{last_updated}"
          puts "----------------------------------"
-         if !trafficking.nil?
+         if !trafficking.empty?
+            puts "__________________________________"
             puts "#{trafficking_label}"
             puts "----------------------------------"
             puts "#{trafficking}"
          end
-         if !drugs.nil?
+         if !drugs.empty?
+            puts "__________________________________"
             puts "#{drugs_label}"
             puts "----------------------------------"
             puts "#{drugs}"
          end
-         if !refugees.nil?
+         if !refugees.empty?
+            puts "__________________________________"
             puts "#{refugees_label}"
             puts "----------------------------------"
             puts "#{refugees}"
          end
-         if !disputes.nil?
+         if !disputes.empty?
+            puts "__________________________________"
             puts "#{disputes_label}"
             puts "----------------------------------"
             puts "#{disputes}"
