@@ -1,25 +1,29 @@
 class WhatAWorld::CLI
     def call
-        countries = []
-        letter = welcome
-        scraper = WhatAWorld::Scraper::ScraperCli.new(letter)
-        countries = scraper.all #=> returns array of letter of country
+        puts "Welcome!"
+        again = true
+        while again
+            countries = []
+            letter = select_letter
+            scraper = WhatAWorld::Scraper::ScraperCli.new(letter)
+            countries = scraper.all #=> returns array of letter of country
 
-        country_name = get_country(countries)
+            country_name = get_country(countries)
 
-       # country_name = "Afghanistan"  #stub. delete this.
-        country = WhatAWorld::Country.new(country_name)
-        country.scrape  
-        #country obj now has name, lastupdated, region.
-        country.get_issues
+            country = WhatAWorld::Country.new(country_name)
+            country.scrape  
+            country.get_issues
 
-
+            #print_results(country)
+            again = again?
+#binding.pry
+        end
 
 
      end
 
-    def welcome
-        puts "Welcome!"
+    def select_letter
+        
         letter = nil
         while !(/\A[A-Z]\z/.match(letter))
             puts "Select A-Z"
@@ -41,5 +45,26 @@ class WhatAWorld::CLI
             number = gets.strip.to_i
         end
         countries[number - 1]    
+    end
+
+    def print_results(country)
+
+    end
+
+    def again?
+        repeat = true
+        while repeat
+            puts "Would you like to look at more data?"
+            puts "type 'yes' or 'no'"
+            print ":"
+            input = gets.strip.to_s.upcase #catch empty input
+            if input != "YES" && input != "NO" && input != "Y" && input != "N"
+                repeat = true
+            else
+                repeat = false
+            end
+    #binding.pry
+        end
+        input == "YES" || input == "Y" ? true : false
     end
 end
