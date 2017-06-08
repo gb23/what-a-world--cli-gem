@@ -95,6 +95,11 @@ class WhatAWorld::CLI
             puts "#{disputes_label}"
             puts "----------------------------------"
             puts "#{disputes}"
+         if disputes.empty? && refugees.empty? && drugs.empty? && trafficking.empty?
+            puts "__________________________________"
+            puts "Sorry unable to locate information."
+            puts "----------------------------------"
+            puts "Please try a different country."
          end
     end
 

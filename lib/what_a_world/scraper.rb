@@ -95,21 +95,22 @@ class WhatAWorld::Scraper
             iterator = 1
             scraped_string(iterator)
            # scraped_string = @country_page.xpath('//ul[last()]/li[last()]/div[iterator]').text
-
-            while scraped_string(iterator) != ""
-
+binding.pry
+            unfamiliar_setup = false
+            while scraped_string(iterator) != "" && !unfamiliar_setup
+                
                 if  disputes == scraped_string(iterator)
                     iterator +=1
-
+binding.pry
                     scraped = scraped_string(iterator)
-
+binding.pry
                     while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
 
                         disputes_content << scraped
                         iterator +=1
                         scraped = scraped_string(iterator)
                     end
-
+binding.pry
                 elsif refugees == scraped_string(iterator)
                     iterator +=1
                     scraped = scraped_string(iterator)
@@ -135,7 +136,8 @@ class WhatAWorld::Scraper
                         iterator +=1
                         scraped = scraped_string(iterator)
                     end
-                #else
+                else
+                    unfamiliar_setup = true
                 end 
             end
         disputes_hash[disputes] = disputes_content
