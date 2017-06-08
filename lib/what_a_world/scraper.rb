@@ -83,7 +83,7 @@ class WhatAWorld::Scraper
         end
 
         def scrape_issues
-            disputes = "Disputes -- international:"
+            disputes = "Disputes - international:"
             disputes_content = []
             refugees = "Refugees and internally displaced persons:"
             refugees_content = []
@@ -94,33 +94,48 @@ class WhatAWorld::Scraper
             iterator = 1
             scraped_string(iterator)
            # scraped_string = @country_page.xpath('//ul[last()]/li[last()]/div[iterator]').text
-binding.pry
+
             while scraped_string(iterator) != ""
 
                 if  disputes == scraped_string(iterator)
                     iterator +=1
-                    while scraped_string(iterator) != disputes || scraped_string(iterator) != refugees || scraped_string(iterator) != trafficking || scraped_string(iterator) != drugs
-                        disputes_content << scraped_string(iterator)
+
+                    scraped = scraped_string(iterator)
+
+                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs
+
+                        disputes_content << scraped
                         iterator +=1
+                        scraped = scraped_string(iterator)
                     end
+
                 elsif refugees == scraped_string(iterator)
                     iterator +=1
-                    while scraped_string(iterator) != disputes || scraped_string(iterator) != refugees || scraped_string(iterator) != trafficking || scraped_string(iterator) != drugs
-                        refugees_content << scraped_string(iterator)
+                    scraped = scraped_string(iterator)
+                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs
+                        refugees_content << scraped
                         iterator +=1
+                        scraped = scraped_string(iterator)
                     end
+binding.pry
                 elsif trafficking == scraped_string(iterator)
                     iterator +=1
-                    while scraped_string(iterator) != disputes || scraped_string(iterator) != refugees || scraped_string(iterator) != trafficking || scraped_string(iterator) != drugs
-                        trafficking_content << scraped_string(iterator)
+                    scraped = scraped_string(iterator)
+                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs
+                        trafficking_content << scraped
                         iterator +=1
+                        scraped = scraped_string(iterator)
                     end
+binding.pry
                 elsif drugs == scraped_string(iterator)
                     iterator +=1
-                    while scraped_string(iterator) != disputes || scraped_string(iterator) != refugees || scraped_string(iterator) != trafficking || scraped_string(iterator) != drugs
-                        drugs_content << scraped_string(iterator)
+                    scraped = scraped_string(iterator)
+                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs
+                        drugs_content << scraped
                         iterator +=1
+                        scraped = scraped_string(iterator)
                     end
+binding.pry
                 #else
                 end 
             end
@@ -129,7 +144,7 @@ binding.pry
             refugees_hash[refugees] = refugees_content
             trafficking_hash[refugees] = trafficking_content
             drugs_hash[drugs] = drugs_content
-
+binding.pry
         end
     end    
 end    
