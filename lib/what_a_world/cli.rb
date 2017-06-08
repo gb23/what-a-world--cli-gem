@@ -55,10 +55,14 @@ class WhatAWorld::CLI
          name = country.name
          last_updated = country.last_updated
          region = country.region 
-         trafficking = country.issues.trafficking
-         drugs = country.issues.drugs
-         refugees = country.issues.refugees
-         disputes = country.issues.disputes
+         trafficking_label =  country.issues.trafficking_hash.keys.join
+         trafficking = country.issues.trafficking_hash.values.join
+         drugs_label =  country.issues.drugs_hash.keys.join
+         drugs = country.issues.drugs_hash.values.join
+         refugees_label =  country.issues.refugees_hash.keys.join
+         refugees = country.issues.refugees_hash.values.join
+         disputes_label =  country.issues.disputes_hash.keys.join
+         disputes = country.issues.disputes_hash.values.join
 
          puts "##################################"
          puts "``````````````````````````````````"
@@ -69,22 +73,22 @@ class WhatAWorld::CLI
          puts "n#{last_updated}"
          puts "----------------------------------"
          if !trafficking.nil?
-            puts "Trafficking in persons::"
+            puts "#{trafficking_label}"
             puts "----------------------------------"
             puts "#{trafficking}"
          end
          if !drugs.nil?
-            puts "Illicit drugs::"
+            puts "#{drugs_label}"
             puts "----------------------------------"
             puts "#{drugs}"
          end
          if !refugees.nil?
-            puts "Refugees and internally displaced persons::"
+            puts "#{refugees_label}"
             puts "----------------------------------"
             puts "#{refugees}"
          end
          if !disputes.nil?
-            puts "Disputes - international::"
+            puts "#{disputes_label}"
             puts "----------------------------------"
             puts "#{disputes}"
          end
