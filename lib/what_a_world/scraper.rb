@@ -39,14 +39,20 @@ class WhatAWorld::Scraper
     end
 
     class ScraperCountry
-        attr_accessor :last_updated, :region
-         html = open(URL)
-         country_page = Nokogiri::HTML(html)
-
-        def find_date
+        attr_accessor :last_updated, :region, :country_url, :html, :country_page
+        def initialize(url_extension)
+            @country_url = URL + url_extension
+            @html = open(@country_url)
+            @country_page = Nokogiri::HTML(html)
         end
 
+     
+        def find_date
+            @country_page.css("div.lastMod").text
+        end
         def find_region
+            str = @country_page.css("div.region1.geos_title").text
+            region = str.split("  ")[0]
         end
     end
 

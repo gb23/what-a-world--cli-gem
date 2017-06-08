@@ -6,10 +6,11 @@ class WhatAWorld::Country
     end
 
     def scrape
-        scraper = WhatAWorld::Scraper::ScraperCountry.new
+        scraper = WhatAWorld::Scraper::ScraperCountry.new(self.url_extension)
         
         self.last_updated = scraper.find_date
         self.region = scraper.find_region
+
     end
 
     def get_issues

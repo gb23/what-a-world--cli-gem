@@ -13,8 +13,10 @@ class WhatAWorld::CLI
 
             country_hash = get_country(letter_countries, letter_url_extensions)
             country = WhatAWorld::Country.new(country_hash)
-            country.scrape  
+            country.scrape 
+    
             country.get_issues
+            
 
             print_results(country)
             again = again?
@@ -32,7 +34,7 @@ class WhatAWorld::CLI
         letter
     end
 
-    #change.  this should return single country, url from countries, urls of a single letter type
+    
     def get_country(letter_countries, letter_url_extensions)
         country_hash = {}
         index = 0
@@ -60,7 +62,8 @@ class WhatAWorld::CLI
 
          puts "##################################"
          puts "#{name}"
-         puts "#{region}"
+         puts "``````````````````````````````````"
+         puts "Location: #{region}"
          puts "##################################"
          puts "updated: #{last_updated}"
          puts "----------------------------------"
