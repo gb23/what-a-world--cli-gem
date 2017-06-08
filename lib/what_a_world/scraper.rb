@@ -9,12 +9,6 @@ class WhatAWorld::Scraper
             @all_url_extensions = []
             @letter_countries = []
             @letter_url_extensions = []
-            gather
-        end
-
-        def gather
-            self.find_all_countries
-            self.find_countries_by_letter
         end
 
         def find_all_countries
@@ -30,7 +24,19 @@ class WhatAWorld::Scraper
         end
 
         def find_countries_by_letter
-            #use @letter
+            indices = []
+            self.all_countries.each.with_index{ |country, index|
+                if country[0] == self.letter
+                    indices << index
+                    self.letter_countries << country
+                end
+            }
+            iterator = indices.first
+            while iterator <= indices.last
+                self.letter_url_extensions << self.all_url_extensions[iterator]
+                iterator += 1
+            end
+binding.pry
         end
     end
 

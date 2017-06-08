@@ -6,6 +6,8 @@ class WhatAWorld::CLI
             countries = []
             letter = select_letter
             scraper = WhatAWorld::Scraper::ScraperCli.new(letter)
+            scraper.find_all_countries
+            scraper.find_countries_by_letter
             letter_countries = scraper.letter_countries
             letter_url_extensions = scraper.letter_url_extensions
 
