@@ -14,7 +14,7 @@ class WhatAWorld::Country
     end
 
     def get_issues
-        self.issues = WhatAWorld::Issues.new
+        self.issues = WhatAWorld::Issues.new(self.url_extension)
         self.issues.scrape
         self.issues
         #tap 
