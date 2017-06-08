@@ -1,30 +1,34 @@
 class WhatAWorld::Scraper
     class ScraperCli
         @@url = "https://www.cia.gov/library/publications/the-world-factbook/"
-        attr_accessor :letter, :countries, :url_extensions
+        
+        attr_accessor :letter, :all_countries, :url_extensions, :countries
         def initialize(letter)
             @letter = letter
-            @countries = []
+            @all_countries = []
             @url_extensions = []
+            self.find_all_countries
             self.find_countries_by_letter
         end
 
-        def find_countries_by_letter
-            #use @letter to scrape
+        def find_all_countries
             html = open(@@url)
-            countries_page = Nokogiri::HTML(html)
-            #convert to array
+            all_countries_page = Nokogiri::HTML(html)
             country_names = ""
             country_url_extensions = []
-            country_names = countries_page.css(".selecter_links option[value^='geos']").text  #"-World--Euro-"]
-            self.countries = country_names.split(" ")
-            country_url_extensions = countries_page.css(".selecter_links option").collect{ |link|
-                link.attr('value')
-           }
-           #country_url_extensions[0] == ""
-binding.pry
-   
-           
+            country_names = all_countries_page.css(".selecter_links option[value^='geos']").text  #"-World--Euro-"]
+            self.all_countries = country_names.split("  ")
+            self.url_extensions = all_countries_page.css(".selecter_links option").collect{ |link|
+                link.attr('value') unless link.attr('value') === ""
+            }
+            self.url_extensions.reject!{|url| url.nil?}
+
+        end
+
+        def find_countries_by_letter
+
+
+
         end
     end
 
