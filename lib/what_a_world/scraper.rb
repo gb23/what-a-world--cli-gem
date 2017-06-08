@@ -36,7 +36,6 @@ class WhatAWorld::Scraper
                 self.letter_url_extensions << self.all_url_extensions[iterator]
                 iterator += 1
             end
-binding.pry
         end
     end
 

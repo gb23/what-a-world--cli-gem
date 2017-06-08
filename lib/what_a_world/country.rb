@@ -1,8 +1,8 @@
 class WhatAWorld::Country
     attr_accessor :name, :url_extension, :last_updated, :region, :issues#:trafficking, :drugs, :refugees, :disputes
     def initialize(hash)
-        #extract @name = name
-        #extract @url_extension
+        @name = hash.keys.join
+        @url_extension = hash.values.join
     end
 
     def scrape
