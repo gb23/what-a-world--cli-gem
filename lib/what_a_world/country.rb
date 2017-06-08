@@ -8,8 +8,8 @@ class WhatAWorld::Country
     def scrape
         scraper = WhatAWorld::Scraper::ScraperCountry.new
         
-        # self.last_updated = "Aug 13, 2013"
-        # self.region = "Middle East"
+        self.last_updated = scraper.find_date
+        self.region = scraper.find_region
     end
 
     def get_issues

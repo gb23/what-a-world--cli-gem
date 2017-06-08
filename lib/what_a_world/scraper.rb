@@ -1,7 +1,6 @@
 class WhatAWorld::Scraper
+    URL = "https://www.cia.gov/library/publications/the-world-factbook/"
     class ScraperCli
-        @@url = "https://www.cia.gov/library/publications/the-world-factbook/"
-        
         attr_accessor :letter, :all_countries, :all_url_extensions, :letter_countries, :letter_url_extensions
         def initialize(letter)
             @letter = letter
@@ -12,7 +11,7 @@ class WhatAWorld::Scraper
         end
 
         def find_all_countries
-            html = open(@@url)
+            html = open(URL)
             all_countries_page = Nokogiri::HTML(html)
             country_names = ""
             country_names = all_countries_page.css(".selecter_links option[value^='geos']").text  #"-World--Euro-"]
@@ -41,6 +40,14 @@ class WhatAWorld::Scraper
 
     class ScraperCountry
         attr_accessor :last_updated, :region
+         html = open(URL)
+         country_page = Nokogiri::HTML(html)
+
+        def find_date
+        end
+
+        def find_region
+        end
     end
 
     class ScraperIssues
