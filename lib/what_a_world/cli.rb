@@ -13,7 +13,7 @@ class WhatAWorld::CLI
 
             country_hash = get_country(letter_countries, letter_url_extensions)
             #{:the_one_name => the_one_extension}
-    binding.pry
+    #binding.pry
             country = WhatAWorld::Country.new(country_hash)
             country.scrape  
             country.get_issues
