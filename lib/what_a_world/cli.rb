@@ -6,7 +6,7 @@ class WhatAWorld::CLI
             countries = []
             letter = select_letter
             scraper = WhatAWorld::Scraper::ScraperCli.new(letter)
-            countries = scraper.all
+            countries = scraper.countries
 
             country_name = get_country(countries)
 
