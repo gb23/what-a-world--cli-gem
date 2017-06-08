@@ -102,7 +102,7 @@ class WhatAWorld::Scraper
 
                     scraped = scraped_string(iterator)
 
-                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs
+                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
 
                         disputes_content << scraped
                         iterator +=1
@@ -112,30 +112,28 @@ class WhatAWorld::Scraper
                 elsif refugees == scraped_string(iterator)
                     iterator +=1
                     scraped = scraped_string(iterator)
-                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs
+                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
                         refugees_content << scraped
                         iterator +=1
                         scraped = scraped_string(iterator)
                     end
-binding.pry
+
                 elsif trafficking == scraped_string(iterator)
                     iterator +=1
                     scraped = scraped_string(iterator)
-                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs
+                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
                         trafficking_content << scraped
                         iterator +=1
                         scraped = scraped_string(iterator)
                     end
-binding.pry
                 elsif drugs == scraped_string(iterator)
                     iterator +=1
                     scraped = scraped_string(iterator)
-                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs
+                    while (scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
                         drugs_content << scraped
                         iterator +=1
                         scraped = scraped_string(iterator)
                     end
-binding.pry
                 #else
                 end 
             end
