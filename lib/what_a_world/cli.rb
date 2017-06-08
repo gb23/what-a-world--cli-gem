@@ -5,20 +5,24 @@ class WhatAWorld::CLI
         while again
             countries = []
             letter = select_letter
-            scraper = WhatAWorld::Scraper::ScraperCli.new(letter)
-            scraper.find_all_countries
-            scraper.find_countries_by_letter
-            letter_countries = scraper.letter_countries
-            letter_url_extensions = scraper.letter_url_extensions
+            if letter != "X"
+                scraper = WhatAWorld::Scraper::ScraperCli.new(letter)
+                scraper.find_all_countries
+                scraper.find_countries_by_letter
+                letter_countries = scraper.letter_countries
+                letter_url_extensions = scraper.letter_url_extensions
 
-            country_hash = get_country(letter_countries, letter_url_extensions)
-            country = WhatAWorld::Country.new(country_hash)
-            country.scrape 
-    
-            country.get_issues
-            
+                country_hash = get_country(letter_countries, letter_url_extensions)
+                country = WhatAWorld::Country.new(country_hash)
+                country.scrape 
+        
+                country.get_issues
+                
 
-            print_results(country)
+                print_results(country)
+            else
+                puts "No locations start with 'X'!"
+            end
             again = again?
         end
         puts "Goodbye!"
@@ -95,6 +99,7 @@ class WhatAWorld::CLI
             puts "#{disputes_label}"
             puts "----------------------------------"
             puts "#{disputes}"
+         end
          if disputes.empty? && refugees.empty? && drugs.empty? && trafficking.empty?
             puts "__________________________________"
             puts "Sorry unable to locate information."

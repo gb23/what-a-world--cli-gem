@@ -24,8 +24,11 @@ class WhatAWorld::Scraper
 
         def find_countries_by_letter
             indices = []
+    
             self.all_countries.each.with_index{ |country, index|
-                if country[0] == self.letter
+
+                if country[0] == self.letter && country.gsub(" ", "") != "EuropeanUnion"
+
                     indices << index
                     self.letter_countries << country
                 end
@@ -95,22 +98,22 @@ class WhatAWorld::Scraper
             iterator = 1
             scraped_string(iterator)
            # scraped_string = @country_page.xpath('//ul[last()]/li[last()]/div[iterator]').text
-binding.pry
+#binding.pry
             unfamiliar_setup = false
             while scraped_string(iterator) != "" && !unfamiliar_setup
                 
                 if  disputes == scraped_string(iterator)
                     iterator +=1
-binding.pry
+#binding.pry
                     scraped = scraped_string(iterator)
-binding.pry
+#binding.pry
                     while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
 
                         disputes_content << scraped
                         iterator +=1
                         scraped = scraped_string(iterator)
                     end
-binding.pry
+#binding.pry
                 elsif refugees == scraped_string(iterator)
                     iterator +=1
                     scraped = scraped_string(iterator)
