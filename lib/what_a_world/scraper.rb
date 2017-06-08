@@ -72,7 +72,7 @@ class WhatAWorld::Scraper
            # "https://www.cia.gov/library/publications/the-world-factbook/geos/zi.html"
             # https://www.cia.gov/library/publications/the-world-factbook/geos/print_zi.html
             @country_url = URL + mod_extension
-            @html = open(@country_url)
+            html = open(@country_url)
             @country_page = Nokogiri::HTML(html)
         end
 
@@ -87,8 +87,9 @@ class WhatAWorld::Scraper
             drugs_content = []
             iterator = 1
             scraped_string = @country_page.xpath('//ul[last()]/li[last()]/div[iterator]').text
-
+binding.pry
             while scraped_string != ""
+
                 if  disputes == scraped_string
                     iterator +=1
                     while scraped_string != disputes || scraped_string != refugees || scraped_string != trafficking || scraped_string != drugs
@@ -121,6 +122,7 @@ class WhatAWorld::Scraper
             refugees_hash[refugees] = refugees_content
             trafficking_hash[refugees] = trafficking_content
             drugs_hash[drugs] = drugs_content
+
         end
     end    
 end    

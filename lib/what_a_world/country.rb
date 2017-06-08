@@ -17,6 +17,7 @@ class WhatAWorld::Country
         self.issues = WhatAWorld::Issues.new(self.url_extension)
         self.issues.scrape
        # self.issues
+binding.pry
         #tap 
     end
 end

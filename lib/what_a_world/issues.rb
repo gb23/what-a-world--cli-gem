@@ -15,6 +15,7 @@ class WhatAWorld::Issues
         self.drugs_hash = scraper.drugs_hash
         self.refugees_hash = scraper.refugees_hash
         self.disputes_hash = scraper.disputes_hash
+
     end
 end
 
