@@ -2,11 +2,13 @@ class WhatAWorld::Scraper
     class ScraperCli
         @@url = "https://www.cia.gov/library/publications/the-world-factbook/"
         
-        attr_accessor :letter, :all_countries, :all_url_extensions
+        attr_accessor :letter, :all_countries, :all_url_extensions, :letter_countries, :letter_url_extensions
         def initialize(letter)
             @letter = letter
             @all_countries = []
             @all_url_extensions = []
+            @letter_countries = []
+            @letter_url_extensions = []
             gather
         end
 
@@ -25,6 +27,10 @@ class WhatAWorld::Scraper
                 link.attr('value') unless link.attr('value') === ""
             }
             self.all_url_extensions.reject!{|url| url.nil?}
+        end
+
+        def find_countries_by_letter
+            #use @letter
         end
     end
 

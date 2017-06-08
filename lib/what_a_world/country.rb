@@ -1,7 +1,8 @@
 class WhatAWorld::Country
-    attr_accessor :name, :last_updated, :region, :issues#:trafficking, :drugs, :refugees, :disputes
-    def initialize(name)
-        @name = name
+    attr_accessor :name, :url_extension, :last_updated, :region, :issues#:trafficking, :drugs, :refugees, :disputes
+    def initialize(hash)
+        #extract @name = name
+        #extract @url_extension
     end
 
     def scrape

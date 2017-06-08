@@ -6,11 +6,13 @@ class WhatAWorld::CLI
             countries = []
             letter = select_letter
             scraper = WhatAWorld::Scraper::ScraperCli.new(letter)
-            countries = scraper.countries
+            letter_countries = scraper.letter_countries
+            letter_url_extensions = scraper.letter_url_extensions
 
-            country_name = get_country(countries)
-
-            country = WhatAWorld::Country.new(country_name)
+            country_hash = get_country(letter_countries, letter_url_extensions)
+            #{:the_one_name => the_one_extension}
+    binding.pry
+            country = WhatAWorld::Country.new(country_hash)
             country.scrape  
             country.get_issues
 
@@ -30,10 +32,12 @@ class WhatAWorld::CLI
         letter
     end
 
-    def get_country(countries)
+    #change.  this should return single country, url from countries, urls of a single letter type
+    def get_country(all_countries, all_url_extensions)
+        country_hash = {}
         index = 0
         number = 0
-        countries.each{|country|
+        all_countries.each{|country|
             index += 1
             puts "#{index}. #{country}"
         }
@@ -41,7 +45,7 @@ class WhatAWorld::CLI
             puts "Choose a country by number"
             number = gets.strip.to_i
         end
-        countries[number - 1]    
+       country_hash[all_countries[number - 1]] = all_url_extensions[number - 1]    
     end
 
     def print_results(country)
