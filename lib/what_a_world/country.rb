@@ -12,8 +12,10 @@ class WhatAWorld::Country
     end
 
     def get_issues
-        #issues obj part of country obj
-       # self.issues = 
+        self.issues = WhatAWorld::Issues.new
+        self.issues.scrape
+        self.issues
+        #tap 
     end
 end
 

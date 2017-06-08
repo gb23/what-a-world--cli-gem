@@ -13,7 +13,10 @@ class WhatAWorld::Scraper
 
         def find_countries_by_letter
             #use @letter to scrape
-            @all << ["Afghanistan", "Argentina", "Australia", "Austria"]
+            @all << "Afghanistan"
+            @all << "Argentina"
+            @all << "Australia"
+            @all << "Austria"
         end
     end
 
