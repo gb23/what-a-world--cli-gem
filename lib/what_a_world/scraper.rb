@@ -73,13 +73,15 @@ class WhatAWorld::Scraper
             mod_extension = mod_extension.insert(2, "print_")
             mod_extension = mod_extension.join
         end
-        
+
         def create_string(iterator)
             "//ul[last()]/li[last()]/div[" + iterator.to_s + "]"
         end
+
         def scraped_string(iterator)
             @country_page.xpath(create_string(iterator)).text
         end
+        
         def scrape_issues
             disputes = "Disputes - international:"
             disputes_content = []
