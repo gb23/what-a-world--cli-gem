@@ -97,46 +97,13 @@ class WhatAWorld::Scraper
             unfamiliar_setup = false
             while scraped_string(iterator) != "" && !unfamiliar_setup
                 if  @@disputes == scraped_string(iterator)
-                    iterator = get_content(iterator, self.disputes_content)
-                    # iterator +=1
-
-                    # scraped = scraped_string(iterator)
-
-                    # while scraped != @@disputes && scraped != @@refugees && scraped != @@trafficking && scraped != @@drugs && scraped != ""
-
-                    #     self.disputes_content << scraped
-                    #     iterator +=1
-                    #     scraped = scraped_string(iterator)
-                    # end
-
+                    iterator = add_content(iterator, self.disputes_content)
                 elsif @@refugees == scraped_string(iterator)
-                    iterator = get_content(iterator, self.refugees_content)
-                    # iterator +=1
-                    # scraped = scraped_string(iterator)
-                    # while scraped != @@disputes && scraped != @@refugees && scraped != @@trafficking && scraped != @@drugs && scraped != ""
-                    #     self.refugees_content << scraped
-                    #     iterator +=1
-                    #     scraped = scraped_string(iterator)
-                    # end
-
+                    iterator = add_content(iterator, self.refugees_content)
                 elsif @@trafficking == scraped_string(iterator)
-                    iterator = get_content(iterator, self.trafficking_content)
-                    # iterator +=1
-                    # scraped = scraped_string(iterator)
-                    # while scraped != @@disputes && scraped != @@refugees && scraped != @@trafficking && scraped != @@drugs && scraped != ""
-                    #     self.trafficking_content << scraped
-                    #     iterator +=1
-                    #     scraped = scraped_string(iterator)
-                    # end
+                    iterator = add_content(iterator, self.trafficking_content)
                 elsif @@drugs == scraped_string(iterator)
-                    iterator = get_content(iterator, self.drugs_content)
-                    # iterator +=1
-                    # scraped = scraped_string(iterator)
-                    # while scraped != @@disputes && scraped != @@refugees && scraped != @@trafficking && scraped != @@drugs && scraped != ""
-                    #     self.drugs_content << scraped
-                    #     iterator +=1
-                    #     scraped = scraped_string(iterator)
-                    # end
+                    iterator = add_content(iterator, self.drugs_content)
                 else
                     unfamiliar_setup = true
                 end 
