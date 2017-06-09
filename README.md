@@ -22,7 +22,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1.  Select a location by its first letter. That is, type in any letter A through Z and press return
+2.  An enumerated list will appear on the screen. Type in a number corresponding to the location listed and press return
+3.  Data will display on screen
+4.  To continue exploring, type 'yes' when prompted about continuing. To stop exploring, type 'no' and press return.
 
 ## Development
 
