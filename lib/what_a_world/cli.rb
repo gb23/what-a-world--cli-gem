@@ -27,10 +27,10 @@ class WhatAWorld::CLI
      end
 
     def welcome 
-        puts "Welcome!"
+        puts "What A World!"
         sleep(1.0)
         puts "Explore transnational issues on a location-by-location basis."
-        sleep (1.0)
+        sleep(1.0)
         puts "Information provided by the C.I.A."
     end
 
@@ -92,22 +92,22 @@ class WhatAWorld::CLI
          puts "#{last_updated}"
          if !trafficking.empty?
             puts "__________________________________"
-            puts "#{trafficking_label}".colorize(:green)
+            puts "#{trafficking_label}".colorize(:blue)
             puts trafficking
          end
          if !drugs.empty?
             puts "__________________________________"
-            puts "#{drugs_label}".colorize(:green)
+            puts "#{drugs_label}".colorize(:blue)
             puts drugs
          end
          if !refugees.empty?
             puts "__________________________________"
-            puts "#{refugees_label}".colorize(:green)
+            puts "#{refugees_label}".colorize(:blue)
             puts refugees
          end
          if !disputes.empty?
             puts "__________________________________"
-            puts "#{disputes_label}".colorize(:green)
+            puts "#{disputes_label}".colorize(:blue)
             puts disputes
          end
          if disputes.empty? && refugees.empty? && drugs.empty? && trafficking.empty?
@@ -125,7 +125,10 @@ class WhatAWorld::CLI
             puts "Would you like to search for other data?".colorize(:red)
             puts "Type 'yes' or 'no'"
             print ":"
-            input = gets.strip.to_s.upcase #catch empty input
+            input = nil
+            while input != nil
+                input = gets.strip.to_s.upcase 
+            end
             if input != "YES" && input != "NO" && input != "Y" && input != "N"
                 repeat = true
             else
