@@ -93,7 +93,6 @@ class WhatAWorld::Scraper
         def scrape_issues
             iterator = 1
             scraped_string(iterator)
-
             unfamiliar_setup = false
             while scraped_string(iterator) != "" && !unfamiliar_setup
                 if  @@disputes == scraped_string(iterator)
