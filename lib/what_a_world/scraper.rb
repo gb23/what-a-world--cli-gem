@@ -56,8 +56,16 @@ class WhatAWorld::Scraper
     end
 
     class ScraperIssues
-        attr_accessor :country_page, :trafficking_hash, :disputes_hash, :drugs_hash, :refugees_hash
+        @@disputes = "Disputes - international:"
+        @@refugees = "Refugees and internally displaced persons:"
+        @@trafficking = "Trafficking in persons:"
+        @@drugs = "Illicit drugs:"
+        attr_accessor :country_page, :trafficking_hash, :disputes_hash, :drugs_hash, :refugees_hash, :disputes_content, :refugees_content, :trafficking_content, :drugs_content
         def initialize(url_extension)
+            @disputes_content = []
+            @refugees_content = []
+            @trafficking_content = []
+            @drugs_content = []
             @trafficking_hash = {}
             @disputes_hash = {}
             @drugs_hash = {}
@@ -83,53 +91,45 @@ class WhatAWorld::Scraper
         end
         
         def scrape_issues
-            disputes = "Disputes - international:"
-            disputes_content = []
-            refugees = "Refugees and internally displaced persons:"
-            refugees_content = []
-            trafficking = "Trafficking in persons:"
-            trafficking_content = []
-            drugs = "Illicit drugs:"
-            drugs_content = []
             iterator = 1
             scraped_string(iterator)
 
             unfamiliar_setup = false
             while scraped_string(iterator) != "" && !unfamiliar_setup
-                if  disputes == scraped_string(iterator)
+                if  @@disputes == scraped_string(iterator)
                     iterator +=1
 
                     scraped = scraped_string(iterator)
 
-                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
+                    while scraped != @@disputes && scraped != @@refugees && scraped != @@trafficking && scraped != @@drugs && scraped != ""
 
-                        disputes_content << scraped
+                        self.disputes_content << scraped
                         iterator +=1
                         scraped = scraped_string(iterator)
                     end
 
-                elsif refugees == scraped_string(iterator)
+                elsif @@refugees == scraped_string(iterator)
                     iterator +=1
                     scraped = scraped_string(iterator)
-                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
-                        refugees_content << scraped
+                    while scraped != @@disputes && scraped != @@refugees && scraped != @@trafficking && scraped != @@drugs && scraped != ""
+                        self.refugees_content << scraped
                         iterator +=1
                         scraped = scraped_string(iterator)
                     end
 
-                elsif trafficking == scraped_string(iterator)
+                elsif @@trafficking == scraped_string(iterator)
                     iterator +=1
                     scraped = scraped_string(iterator)
-                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
-                        trafficking_content << scraped
+                    while scraped != @@disputes && scraped != @@refugees && scraped != @@trafficking && scraped != @@drugs && scraped != ""
+                        self.trafficking_content << scraped
                         iterator +=1
                         scraped = scraped_string(iterator)
                     end
-                elsif drugs == scraped_string(iterator)
+                elsif @@drugs == scraped_string(iterator)
                     iterator +=1
                     scraped = scraped_string(iterator)
-                    while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
-                        drugs_content << scraped
+                    while scraped != @@disputes && scraped != @@refugees && scraped != @@trafficking && scraped != @@drugs && scraped != ""
+                        self.drugs_content << scraped
                         iterator +=1
                         scraped = scraped_string(iterator)
                     end
@@ -137,10 +137,20 @@ class WhatAWorld::Scraper
                     unfamiliar_setup = true
                 end 
             end
-        disputes_hash[disputes] = disputes_content
-        refugees_hash[refugees] = refugees_content
-        trafficking_hash[trafficking] = trafficking_content
-        drugs_hash[drugs] = drugs_content
+        self.disputes_hash[@@disputes] = self.disputes_content
+        self.refugees_hash[@@refugees] = self.refugees_content
+        self.trafficking_hash[@@trafficking] = self.trafficking_content
+        self.drugs_hash[@@drugs] = self.drugs_content
         end
+    
+    # def add_content(iterator)
+    #     iterator +=1
+    #     scraped = scraped_string(iterator)
+    #     while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
+    #         refugees_content << scraped
+    #         iterator +=1
+    #         scraped = scraped_string(iterator)
+    #     end
+    # end
     end    
 end    
