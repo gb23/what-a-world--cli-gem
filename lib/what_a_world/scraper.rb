@@ -24,11 +24,8 @@ class WhatAWorld::Scraper
 
         def find_countries_by_letter
             indices = []
-    
             self.all_countries.each.with_index{ |country, index|
-
                 if country[0] == self.letter && country.gsub(" ", "") != "EuropeanUnion"
-
                     indices << index
                     self.letter_countries << country
                 end
@@ -42,10 +39,10 @@ class WhatAWorld::Scraper
     end
 
     class ScraperCountry
-        attr_accessor :last_updated, :region, :country_url, :html, :country_page
+        attr_accessor :last_updated, :region, :country_page
         def initialize(url_extension)
-            @country_url = URL + url_extension
-            @html = open(@country_url)
+            country_url = URL + url_extension
+            html = open(country_url)
             @country_page = Nokogiri::HTML(html)
         end
 
@@ -59,7 +56,7 @@ class WhatAWorld::Scraper
     end
 
     class ScraperIssues
-        attr_accessor :country_url, :country_page, :trafficking_hash, :disputes_hash, :drugs_hash, :refugees_hash
+        attr_accessor :country_page, :trafficking_hash, :disputes_hash, :drugs_hash, :refugees_hash
         def initialize(url_extension)
             @trafficking_hash = {}
             @disputes_hash = {}
@@ -69,11 +66,11 @@ class WhatAWorld::Scraper
             mod_extension = mod_extension.insert(1, "/")
             mod_extension = mod_extension.insert(2, "print_")
             mod_extension = mod_extension.join
-            @country_url = URL + mod_extension
-            html = open(@country_url)
+            country_url = URL + mod_extension
+            html = open(country_url)
             @country_page = Nokogiri::HTML(html)
-
         end
+
         def create_string(iterator)
             "//ul[last()]/li[last()]/div[" + iterator.to_s + "]"
         end

@@ -19,7 +19,7 @@ class WhatAWorld::CLI
                 
                 print_results(country)
             else
-                puts "No locations start with 'X'!"
+                puts "No locations start with 'X'!".colorize(:red)
             end
             again = again?
         end
@@ -29,20 +29,23 @@ class WhatAWorld::CLI
     def welcome 
         puts "Welcome!"
         sleep(1.0)
-        puts "Explore transnational issues on a country-by-country basis."
+        puts "Explore transnational issues on a location-by-location basis."
         sleep (1.0)
         puts "Information provided by the C.I.A."
     end
 
     def goodbye
-        puts "Goodbye and peace to the world!"
+        puts ""
+        puts "Goodbye, and" + " peace".colorize(:blue) + " to the " + "world!".colorize(:green)
+        puts ""
     end
+
     def select_letter
         letter = nil
         puts ""
         while !(/\A[A-Z]\z/.match(letter))
             sleep(0.5)
-            puts "Select a country by typing its first letter, A-Z"
+            puts "Select a location by typing its first letter, A to Z".colorize(:red)
             print ":"
             letter = gets.strip.upcase 
         end 
@@ -50,7 +53,6 @@ class WhatAWorld::CLI
         letter
     end
 
-    
     def get_country(letter_countries, letter_url_extensions)
         country_hash = {}
         index = 0
@@ -61,7 +63,7 @@ class WhatAWorld::CLI
         }
         while !number.between?(1, index)
             puts ""
-            puts "Choose a country by number"
+            puts "Choose a country by number".colorize(:red)
             print ":"
             number = gets.strip.to_i
         end
@@ -120,7 +122,7 @@ class WhatAWorld::CLI
         repeat = true
             puts ""
         while repeat
-            puts "Would you like to search for other data?"
+            puts "Would you like to search for other data?".colorize(:red)
             puts "Type 'yes' or 'no'"
             print ":"
             input = gets.strip.to_s.upcase #catch empty input
