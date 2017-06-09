@@ -62,15 +62,18 @@ class WhatAWorld::Scraper
             @disputes_hash = {}
             @drugs_hash = {}
             @refugees_hash = {}
-            mod_extension = url_extension.split("/")
-            mod_extension = mod_extension.insert(1, "/")
-            mod_extension = mod_extension.insert(2, "print_")
-            mod_extension = mod_extension.join
-            country_url = URL + mod_extension
+            country_url = URL + modify_extension(url_extension)
             html = open(country_url)
             @country_page = Nokogiri::HTML(html)
         end
 
+        def modify_extension(url_extension)
+            mod_extension = url_extension.split("/")
+            mod_extension = mod_extension.insert(1, "/")
+            mod_extension = mod_extension.insert(2, "print_")
+            mod_extension = mod_extension.join
+        end
+        
         def create_string(iterator)
             "//ul[last()]/li[last()]/div[" + iterator.to_s + "]"
         end

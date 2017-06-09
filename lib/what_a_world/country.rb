@@ -1,5 +1,5 @@
 class WhatAWorld::Country
-    attr_accessor :name, :url_extension, :last_updated, :region, :issues#:trafficking, :drugs, :refugees, :disputes
+    attr_accessor :name, :url_extension, :last_updated, :region, :issues
     def initialize(hash)
         @name = hash.keys.join
         @url_extension = hash.values.join
@@ -16,8 +16,5 @@ class WhatAWorld::Country
     def get_issues
         self.issues = WhatAWorld::Issues.new(self.url_extension)
         self.issues.scrape
-       # self.issues
-
-        #tap 
     end
 end
