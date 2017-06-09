@@ -1,8 +1,8 @@
 # WhatAWorld
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/what_a_world`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to `What a World!` gem. Exploring the world is always an adventure.  This gem provides C.I.A. data on transnational issues from various locations arould the planet.  Locations are first searched by first letter, and then are chosen from an enumerated, alphabetized list.  Caution: Results may be shocking.  The idea behind this gem is to present the user with troubling issues with the intent of raising awareness of global issues.  Hopefully, you will learn something new! 
 
-TODO: Delete this and the text above, and describe your gem
+Peace to the planet.   
 
 ## Installation
 
