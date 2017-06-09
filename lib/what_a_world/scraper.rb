@@ -14,7 +14,7 @@ class WhatAWorld::Scraper
             html = open(URL)
             all_countries_page = Nokogiri::HTML(html)
             country_names = ""
-            country_names = all_countries_page.css(".selecter_links option[value^='geos']").text  #"-World--Euro-"]
+            country_names = all_countries_page.css(".selecter_links option[value^='geos']").text
             self.all_countries = country_names.split("  ")
             self.all_url_extensions = all_countries_page.css(".selecter_links option").collect{ |link|
                 link.attr('value') unless link.attr('value') === ""
@@ -49,7 +49,6 @@ class WhatAWorld::Scraper
             @country_page = Nokogiri::HTML(html)
         end
 
-     
         def find_date
             @country_page.css("div.lastMod").text
         end
@@ -70,10 +69,6 @@ class WhatAWorld::Scraper
             mod_extension = mod_extension.insert(1, "/")
             mod_extension = mod_extension.insert(2, "print_")
             mod_extension = mod_extension.join
-            #geos/zi.html
-            #geos/print_zi.html
-           # "https://www.cia.gov/library/publications/the-world-factbook/geos/zi.html"
-            # https://www.cia.gov/library/publications/the-world-factbook/geos/print_zi.html
             @country_url = URL + mod_extension
             html = open(@country_url)
             @country_page = Nokogiri::HTML(html)
@@ -85,7 +80,6 @@ class WhatAWorld::Scraper
         def scraped_string(iterator)
             @country_page.xpath(create_string(iterator)).text
         end
-
         def scrape_issues
             disputes = "Disputes - international:"
             disputes_content = []
@@ -97,23 +91,21 @@ class WhatAWorld::Scraper
             drugs_content = []
             iterator = 1
             scraped_string(iterator)
-           # scraped_string = @country_page.xpath('//ul[last()]/li[last()]/div[iterator]').text
-#binding.pry
+
             unfamiliar_setup = false
             while scraped_string(iterator) != "" && !unfamiliar_setup
-                
                 if  disputes == scraped_string(iterator)
                     iterator +=1
-#binding.pry
+
                     scraped = scraped_string(iterator)
-#binding.pry
+
                     while scraped != disputes && scraped != refugees && scraped != trafficking && scraped != drugs && scraped != ""
 
                         disputes_content << scraped
                         iterator +=1
                         scraped = scraped_string(iterator)
                     end
-#binding.pry
+
                 elsif refugees == scraped_string(iterator)
                     iterator +=1
                     scraped = scraped_string(iterator)

@@ -30,11 +30,13 @@ class WhatAWorld::CLI
 
     def select_letter
         letter = nil
+        puts ""
         while !(/\A[A-Z]\z/.match(letter))
             puts "Select A-Z"
             print ":"
             letter = gets.strip.upcase 
         end 
+        puts ""
         letter
     end
 
@@ -48,9 +50,12 @@ class WhatAWorld::CLI
             puts "#{index}. #{country}"
         }
         while !number.between?(1, index)
+            puts ""
             puts "Choose a country by number"
+            print ":"
             number = gets.strip.to_i
         end
+        puts ""
        country_hash[letter_countries[number - 1]] = letter_url_extensions[number - 1]  
        country_hash  
     end
@@ -68,50 +73,44 @@ class WhatAWorld::CLI
          disputes_label =  country.issues.disputes_hash.keys.join
          disputes = country.issues.disputes_hash.values.join
 
-         puts "##################################"
-         puts "__________________________________"
-         puts "#{name.upcase}"
-         puts "``````````````````````````````````"
-         puts "Location: #{region}"
-         puts "##################################"
+         puts "##################################".colorize(:blue)
+         puts "#{name.upcase}".colorize(:light_blue)
+         puts "Region: #{region}".colorize(:light_blue)
+         puts "##################################".colorize(:blue)
          puts "#{last_updated}"
-         puts "----------------------------------"
          if !trafficking.empty?
             puts "__________________________________"
-            puts "#{trafficking_label}"
-            puts "----------------------------------"
-            puts "#{trafficking}"
+            puts "#{trafficking_label}".colorize(:green)
+            puts trafficking
          end
          if !drugs.empty?
             puts "__________________________________"
-            puts "#{drugs_label}"
-            puts "----------------------------------"
-            puts "#{drugs}"
+            puts "#{drugs_label}".colorize(:green)
+            puts drugs
          end
          if !refugees.empty?
             puts "__________________________________"
-            puts "#{refugees_label}"
-            puts "----------------------------------"
-            puts "#{refugees}"
+            puts "#{refugees_label}".colorize(:green)
+            puts refugees
          end
          if !disputes.empty?
             puts "__________________________________"
-            puts "#{disputes_label}"
-            puts "----------------------------------"
-            puts "#{disputes}"
+            puts "#{disputes_label}".colorize(:green)
+            puts disputes
          end
          if disputes.empty? && refugees.empty? && drugs.empty? && trafficking.empty?
             puts "__________________________________"
-            puts "Sorry unable to locate information."
-            puts "----------------------------------"
+            puts "Sorry, unable to locate information.".colorize(:red)
             puts "Please try a different country."
          end
+            puts "__________________________________"
     end
 
     def again?
         repeat = true
+            puts ""
         while repeat
-            puts "Would you like to look at more data?"
+            puts "Would you like to search for other data?"
             puts "Type 'yes' or 'no'"
             print ":"
             input = gets.strip.to_s.upcase #catch empty input
