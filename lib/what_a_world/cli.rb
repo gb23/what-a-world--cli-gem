@@ -1,9 +1,8 @@
 class WhatAWorld::CLI
     def call
-        puts "Welcome!"
+        welcome
         again = true
         while again
-            countries = []
             letter = select_letter
             if letter != "X"
                 scraper = WhatAWorld::Scraper::ScraperCli.new(letter)
@@ -18,21 +17,32 @@ class WhatAWorld::CLI
         
                 country.get_issues
                 
-
                 print_results(country)
             else
                 puts "No locations start with 'X'!"
             end
             again = again?
         end
-        puts "Goodbye!"
+        goodbye
      end
 
+    def welcome 
+        puts "Welcome!"
+        sleep(1.0)
+        puts "Explore transnational issues on a country-by-country basis."
+        sleep (1.0)
+        puts "Information provided by the C.I.A."
+    end
+
+    def goodbye
+        puts "Goodbye and peace to the world!"
+    end
     def select_letter
         letter = nil
         puts ""
         while !(/\A[A-Z]\z/.match(letter))
-            puts "Select A-Z"
+            sleep(0.5)
+            puts "Select a country by typing its first letter, A-Z"
             print ":"
             letter = gets.strip.upcase 
         end 
