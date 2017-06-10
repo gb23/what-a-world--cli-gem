@@ -16,7 +16,7 @@ class WhatAWorld::Scraper
             html = open(URL)
             all_countries_page = Nokogiri::HTML(html)
             country_names = ""
-            country_names = all_countries_page.css(".selecter_links option[value^='geos']").text
+            country_names = all_countries_page.css(".selecter_links option[value^='geos']").text.strip
             self.all_countries = country_names.split("  ")
             self.all_url_extensions = all_countries_page.css(".selecter_links option").collect{ |link|
                 link.attr('value') unless link.attr('value') === ""
@@ -50,10 +50,10 @@ class WhatAWorld::Scraper
         end
 
         def find_date
-            self.country_page.css("div.lastMod").text
+            self.country_page.css("div.lastMod").text.strip
         end
         def find_region
-            str = self.country_page.css("div.region1.geos_title").text
+            str = self.country_page.css("div.region1.geos_title").text.strip
             self.region = str.split("  ")[0]
         end
     end
@@ -91,7 +91,7 @@ class WhatAWorld::Scraper
         end
 
         def scraped_string(iterator)
-            @country_page.xpath(create_string(iterator)).text
+            @country_page.xpath(create_string(iterator)).text.strip
         end
         
         def scrape_issues
