@@ -1,5 +1,6 @@
 class WhatAWorld::Country
-    attr_accessor :name, :url_extension, :last_updated, :region, :issues
+    attr_accessor :last_updated, :region, :issues
+    attr_reader :name, :url_extension
     def initialize(hash)
         @name = hash.keys.join
         @url_extension = hash.values.join

@@ -1,7 +1,9 @@
 class WhatAWorld::Scraper
     URL = "https://www.cia.gov/library/publications/the-world-factbook/"
     class ScraperCli
-        attr_accessor :letter, :all_countries, :all_url_extensions, :letter_countries, :letter_url_extensions
+        attr_accessor  :all_countries, :all_url_extensions  
+        attr_reader :letter, :letter_countries,:letter_url_extensions 
+        
         def initialize(letter)
             @letter = letter
             @all_countries = []
@@ -39,7 +41,8 @@ class WhatAWorld::Scraper
     end
 
     class ScraperCountry
-        attr_accessor :last_updated, :region, :country_page
+        attr_accessor :country_page
+        attr_writer :region
         def initialize(url_extension)
             country_url = URL + url_extension
             html = open(country_url)
@@ -47,11 +50,11 @@ class WhatAWorld::Scraper
         end
 
         def find_date
-            @country_page.css("div.lastMod").text
+            self.country_page.css("div.lastMod").text
         end
         def find_region
-            str = @country_page.css("div.region1.geos_title").text
-            region = str.split("  ")[0]
+            str = self.country_page.css("div.region1.geos_title").text
+            self.region = str.split("  ")[0]
         end
     end
 
@@ -60,7 +63,8 @@ class WhatAWorld::Scraper
         @@refugees = "Refugees and internally displaced persons:"
         @@trafficking = "Trafficking in persons:"
         @@drugs = "Illicit drugs:"
-        attr_accessor :country_page, :trafficking_hash, :disputes_hash, :drugs_hash, :refugees_hash, :disputes_content, :refugees_content, :trafficking_content, :drugs_content
+        attr_accessor :country_page, :trafficking_hash, :disputes_hash, :drugs_hash, :refugees_hash
+        attr_reader :disputes_content, :refugees_content, :trafficking_content, :drugs_content
         def initialize(url_extension)
             @disputes_content = []
             @refugees_content = []

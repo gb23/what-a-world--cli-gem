@@ -1,9 +1,9 @@
-*CLI
+CLI
     -ScraperCLI
-    -*Country
+    -Country
            -ScraperCountry
-           - *TransnationIssues
-                           -ScraperTI
+           -Issues
+                           -ScraperIssues
 
 
 class CLIScraper
