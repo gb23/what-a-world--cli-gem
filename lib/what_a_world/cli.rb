@@ -52,25 +52,35 @@ class WhatAWorld::CLI
         puts ""
         letter
     end
+ 
+    def whole?(number)
+        regex = /\A[1-9][0-9]*\z/ 
+        regex.match(number)
+    end
 
     def get_country(letter_countries, letter_url_extensions)
         country_hash = {}
         index = 0
-        number = 0
         letter_countries.each{|country|
             index += 1
             puts "#{index}. #{country}"
         }
-        while !number.between?(1, index)
-            puts ""
+
+        number = ""
+        puts ""
+        loop do
             puts "Choose a country by number".colorize(:red)
             print ":"
-            number = gets.strip.to_i
-        end
+            number = gets.strip
+            break if (number.to_i.between?(1, index) && whole?(number))
+        end 
+
         puts ""
-       country_hash[letter_countries[number - 1]] = letter_url_extensions[number - 1]  
+       country_hash[letter_countries[number.to_i - 1]] = letter_url_extensions[number.to_i - 1]  
        country_hash  
     end
+
+   
 
     def print_results(country)
          name = country.name
