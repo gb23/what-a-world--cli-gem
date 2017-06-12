@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = WhatAWorld::VERSION
   spec.authors       = ["gb23"]
   spec.email         = ["gregbenj@hotmail.com"]
-
+  spec.files         = ["lib/what_a_world.rb"]
   spec.summary       = %q{What a world!  Displays transnational issues by country}
   spec.description   = %q{What a world! Choose a country to learn about various transnational issues that hinder global progress, as recognized by the CIA }
   spec.homepage      = "https://github.com/gb23/what-a-world-cli-gem/"
