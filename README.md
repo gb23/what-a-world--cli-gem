@@ -9,7 +9,7 @@ Peace to the planet.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'what_a_world'
+gem 'what-a-world'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install what_a_world
+    $ gem install what-a-world
 
 ## Usage
 To execute: type ```what-a-world``` in your terminal
