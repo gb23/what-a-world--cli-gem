@@ -86,19 +86,15 @@ class WhatAWorld::Scraper
             mod_extension = mod_extension.join
         end
 
-        def create_string(iterator)
-            "//ul[last()]/li[last()]/div[" + iterator.to_s + "]"
-        end
-
         def scraped_string(iterator)
-            @country_page.xpath(create_string(iterator)).text.strip
+            @country_page.css("li").last.css("div")[iterator].text.strip if @country_page.css("li").last.css("div")[iterator]
         end
         
         def scrape_issues
-            iterator = 1
+            iterator = 0
             scraped_string(iterator)
-            unfamiliar_setup = false
-            while scraped_string(iterator) != "" && !unfamiliar_setup
+            finished = false
+            while !finished
                 if  @@disputes == scraped_string(iterator)
                     iterator = add_content(iterator, self.disputes_content)
                 elsif @@refugees == scraped_string(iterator)
@@ -108,7 +104,7 @@ class WhatAWorld::Scraper
                 elsif @@drugs == scraped_string(iterator)
                     iterator = add_content(iterator, self.drugs_content)
                 else
-                    unfamiliar_setup = true
+                    finished = true
                 end 
             end
         self.disputes_hash[@@disputes] = self.disputes_content
@@ -120,7 +116,7 @@ class WhatAWorld::Scraper
         def add_content(iterator, content)
             iterator +=1
             scraped = scraped_string(iterator)
-            while scraped != @@disputes && scraped != @@refugees && scraped != @@trafficking && scraped != @@drugs && scraped != ""
+            while scraped != @@disputes && scraped != @@refugees && scraped != @@trafficking && scraped != @@drugs && scraped != nil
                 content << scraped
                 iterator +=1
                 scraped = scraped_string(iterator)
