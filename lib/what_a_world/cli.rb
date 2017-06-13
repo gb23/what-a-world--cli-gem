@@ -31,12 +31,12 @@ class WhatAWorld::CLI
         sleep(1.0)
         "Explore transnational issues on a location-by-location basis.".print_fit
         sleep(1.0)
-        puts "Information provided by the C.I.A."
+        "Information provided by the C.I.A.".print_fit
     end
 
     def goodbye
         puts ""
-        puts "Goodbye, and" + " peace".colorize(:blue) + " to the " + "world!".colorize(:green)
+        "Goodbye, and peace to the world!".print_fit
         puts ""
     end
 
@@ -103,22 +103,22 @@ class WhatAWorld::CLI
          if !trafficking.empty?
             puts "__________________________________"
             puts "#{trafficking_label}".colorize(:red)
-            puts trafficking
+            trafficking.print_fit
          end
          if !drugs.empty?
             puts "__________________________________"
             puts "#{drugs_label}".colorize(:red)
-            puts drugs
+            drugs.print_fit
          end
          if !refugees.empty?
             puts "__________________________________"
             puts "#{refugees_label}".colorize(:red)
-            puts refugees
+            refugees.print_fit
          end
          if !disputes.empty?
             puts "__________________________________"
             puts "#{disputes_label}".colorize(:red)
-            puts disputes
+            disputes.print_fit
          end
          if disputes.empty? && refugees.empty? && drugs.empty? && trafficking.empty?
             puts "__________________________________"
