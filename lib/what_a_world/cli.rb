@@ -27,9 +27,9 @@ class WhatAWorld::CLI
      end
 
     def welcome 
-        puts "What A World!"
+        "What A World!".print_fit
         sleep(1.0)
-        puts "Explore transnational issues on a location-by-location basis."
+        "Explore transnational issues on a location-by-location basis.".print_fit
         sleep(1.0)
         puts "Information provided by the C.I.A."
     end
