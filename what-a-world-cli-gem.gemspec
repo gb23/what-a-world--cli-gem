@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'what_a_world/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "what_a_world"
+  spec.name          = "what-a-world"
   spec.version       = WhatAWorld::VERSION
   spec.author        = ["Greg B"]
   spec.authors       = ["gb23"]
