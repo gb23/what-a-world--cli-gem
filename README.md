@@ -21,11 +21,7 @@ Or install it yourself as:
     $ gem install what_a_world
 
 ## Usage
-
-1.  Select a location by its first letter. That is, type in any letter A through Z and press return
-2.  An enumerated list will appear on the screen. Type in a number corresponding to the location listed and press return
-3.  Data will display on screen
-4.  To continue exploring, type 'yes' when prompted about continuing. To stop exploring, type 'no' and press return.
+To execute: type ```what-a-world``` in your terminal
 
 ## Development
 
